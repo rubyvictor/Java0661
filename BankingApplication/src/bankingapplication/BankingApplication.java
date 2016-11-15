@@ -5,6 +5,7 @@
  */
 package bankingapplication;
 
+import bankinglogic.CitiBank;
 import bankinglogic.UOB;
 
 /**
@@ -38,7 +39,15 @@ public class BankingApplication {
         secondUOBCustomer.withdrawal(1000);
         secondUOBCustomer.displayTransaction();
     
-    
+    //CitiBank Transactions
+    CitiBank firstCitiCustomer = new CitiBank(); //Object reference available. create a class constructor and new copies will be put into the object UOB.
+        
+        firstCitiCustomer.accountNumber = 8000;
+        firstCitiCustomer.accountName = "Donald Trump";
+        firstCitiCustomer.accountType = "Entrepreneur Account";
+        firstCitiCustomer.deposit(1_000_000);
+        firstCitiCustomer.withdrawal(5_000_000);
+        firstCitiCustomer.displayTransaction();
     }
     
 }

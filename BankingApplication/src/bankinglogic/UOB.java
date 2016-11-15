@@ -16,7 +16,7 @@ package bankinglogic;
 public class UOB {
     //put attributes and methods
     
-    public int accountNumber = 224466;//public is an access modifier.  Use public to make this var accessible in the same class or package
+    public int accountNumber = 1000;//public is an access modifier.  Use public to make this var accessible in the same class or package
     public String accountName = "Victor Lee";//if no public access modifier, then var becomes local accessible within this class only
     public String accountType = "";
     public double accountBalance = 0.0;
