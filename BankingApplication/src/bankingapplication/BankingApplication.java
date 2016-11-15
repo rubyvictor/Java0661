@@ -28,6 +28,7 @@ public class BankingApplication {
         firstUOBCustomer.deposit(1000);
         firstUOBCustomer.withdrawal(5000);
         firstUOBCustomer.displayTransaction();
+        //firstUOBCustomer.CLOSING_MONTHS = 11; cannot modify a final variable that is constant
         
         UOB secondUOBCustomer = new UOB();
         secondUOBCustomer.accountNumber = 2000;

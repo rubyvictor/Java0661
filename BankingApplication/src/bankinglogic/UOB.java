@@ -16,18 +16,21 @@ package bankinglogic;
 public class UOB {
     //put attributes and methods
     
-    public int accountNumber = 224466;
-    public String accountName = "Victor Lee";
+    public int accountNumber = 224466;//public is an access modifier.  Use public to make this var accessible in the same class or package
+    public String accountName = "Victor Lee";//if no public access modifier, then var becomes local accessible within this class only
     public String accountType = "";
     public double accountBalance = 0.0;
     public boolean accountActive = true;
- 
+    public final int CLOSING_MONTHS = 12;
+    
     
     public void deposit(double depositAmount){
-        accountBalance += depositAmount;
+        double interestRate = 0.10;//this is a local variable visible only to this method
+        accountBalance += (depositAmount + (depositAmount * interestRate));
     }
             
     public void withdrawal(double withdrawalAmount){
+        //interestRate = 0.50;this method cannot access the interestRate var in deposit method
         accountBalance -= withdrawalAmount;
     }
     
