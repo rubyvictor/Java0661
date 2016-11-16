@@ -17,7 +17,9 @@ public class CitiBank {
     public boolean accountActive = true;
     public final int CLOSING_MONTHS = 1;
     public StringBuilder bankDisclaimer = new StringBuilder("Disclaimer blah blah blah");//this String is mutable due to StringBuilder
-    
+    //public String [] bankBranches = new String[4];
+    public String [] bankBranches = {"North", "South","East", "West"};
+            
     public void deposit(long depositAmount){
         double interestRate = 0.10;//this is a local variable visible only to this method
         
@@ -38,22 +40,28 @@ public class CitiBank {
     }
     
     public void displayTransaction(){
+    System.out.println();
     System.out.println("Account No:" + accountNumber);
     System.out.println("Account Name:" + accountName);
     System.out.println("Account Type:" + accountType);
     System.out.println("New Account Balance:" + accountBalance);
     System.out.println("Account Status:" + accountActive);
     //System.out.println("Bank Disclaimer:" + bankDisclaimer);
-    
     String disclaimerInCaps = bankDisclaimer.toString();
     System.out.println(disclaimerInCaps.toUpperCase());
-    
     //StringBuilder capacity practice
     StringBuilder myString = new StringBuilder();
     myString.append("asdfghjklpoiuytrew");
     System.out.println("length" + myString.length());
     System.out.println("capactiy" + myString.capacity());
     closingMonthInWord();
+    //display bank branches
+    System.out.println("Bank Branches:");
+    System.out.println(bankBranches[0]);
+    System.out.println(bankBranches[1]);
+    System.out.println(bankBranches[2]);
+    System.out.println(bankBranches[3]);
+    
     }
     
     public void closingMonthInWord(){

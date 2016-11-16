@@ -23,6 +23,8 @@ public class UOB {
     public boolean accountActive = true;
     public final int CLOSING_MONTHS = 12;
     public StringBuilder bankDisclaimer = new StringBuilder("Disclaimer blah blah blah");//this is a String but mutable because of StringBuilder
+    //public String [] bankBranches = new String[3]; //declare and instantiate new array
+    public String [] bankBranches = {"North", "South", "East"};
     
     public void deposit(double depositAmount){
         double interestRate = 0.10;//this is a local variable visible only to this method
@@ -76,6 +78,11 @@ public class UOB {
     String disclaimerInCaps = bankDisclaimer.toString();
     System.out.println(disclaimerInCaps.toUpperCase());
     closingMonthInWord();
+    //display bank branches
+    System.out.println("Bank Branches:");
+    System.out.println(bankBranches[0]);
+    System.out.println(bankBranches[1]);
+    System.out.println(bankBranches[2]);
     }
     
     public void closingMonthInWord(){
