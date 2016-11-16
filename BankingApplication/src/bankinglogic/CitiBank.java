@@ -16,7 +16,7 @@ public class CitiBank {
     public double accountBalance = 0.0;
     public boolean accountActive = true;
     public final int CLOSING_MONTHS = 1;
-    
+    public StringBuilder bankDisclaimer = new StringBuilder("Disclaimer blah blah blah");//this String is mutable due to StringBuilder
     
     public void deposit(long depositAmount){
         double interestRate = 0.10;//this is a local variable visible only to this method
@@ -34,6 +34,18 @@ public class CitiBank {
     System.out.println("Account Type:" + accountType);
     System.out.println("New Account Balance:" + accountBalance);
     System.out.println("Account Status:" + accountActive);
+    //System.out.println("Bank Disclaimer:" + bankDisclaimer);
+    
+    String disclaimerInCaps = bankDisclaimer.toString();
+    System.out.println(disclaimerInCaps.toUpperCase());
+    
+    //StringBuilder capacity practice
+    StringBuilder myString = new StringBuilder();
+    myString.append("asdfghjklpoiuytrew");
+    System.out.println("length" + myString.length());
+    System.out.println("capactiy" + myString.capacity());
+    
+    
     
     }
 }

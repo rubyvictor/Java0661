@@ -22,7 +22,7 @@ public class UOB {
     public double accountBalance = 0.0;
     public boolean accountActive = true;
     public final int CLOSING_MONTHS = 12;
-    
+    public StringBuilder bankDisclaimer = new StringBuilder("Disclaimer blah blah blah");//this is a String but mutable because of StringBuilder
     
     public void deposit(double depositAmount){
         double interestRate = 0.10;//this is a local variable visible only to this method
@@ -30,8 +30,13 @@ public class UOB {
     }
             
     public void withdrawal(double withdrawalAmount){
-        //interestRate = 0.50;this method cannot access the interestRate var in deposit method
-        accountBalance -= withdrawalAmount;
+        if (withdrawalAmount >= 2000 && accountType == "Savings Account") {
+            System.out.println("Sorry, you exceeded withdrawal limit. Please try again tomorrow." );
+            
+        }else {
+            accountBalance -= withdrawalAmount;
+        }
+        
     }
     
     public void displayTransaction(){
@@ -40,7 +45,10 @@ public class UOB {
     System.out.println("Account Type:" + accountType);
     System.out.println("New Account Balance:" + accountBalance);
     System.out.println("Account Status:" + accountActive);
+    //System.out.println("Disclaimer:" + bankDisclaimer);
     
+    String disclaimerInCaps = bankDisclaimer.toString();
+    System.out.println(disclaimerInCaps.toUpperCase());
     }
     
 }

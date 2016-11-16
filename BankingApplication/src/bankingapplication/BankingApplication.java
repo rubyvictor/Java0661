@@ -21,14 +21,17 @@ public class BankingApplication {
         // TODO code application logic here
         //instantiate an instance of the UOB class ie create an object which will hold a copy of the object - need to import bankinglogic package
         //or can fully qualify without import but repetitive.  bankinglogic.UOB firstUOBCustomer;
-        UOB firstUOBCustomer = new UOB(); //Object reference available. create a class constructor and new copies will be put into the object UOB.
+        UOB firstUOBCustomer;
+        firstUOBCustomer = new UOB(); //Object reference available. create a class constructor and new copies will be put into the object UOB.
         
         firstUOBCustomer.accountNumber = 1000;
         firstUOBCustomer.accountName = "Eva Longoria";
         firstUOBCustomer.accountType = "Savings Account";
         firstUOBCustomer.deposit(1000);
         firstUOBCustomer.withdrawal(5000);
+        firstUOBCustomer.bankDisclaimer.append(" For UOB ...");
         firstUOBCustomer.displayTransaction();
+        
         //firstUOBCustomer.CLOSING_MONTHS = 11; cannot modify a final variable that is constant
         
         UOB secondUOBCustomer = new UOB();
@@ -37,8 +40,14 @@ public class BankingApplication {
         secondUOBCustomer.accountType = "Current Account";
         secondUOBCustomer.deposit(500);
         secondUOBCustomer.withdrawal(1000);
+        secondUOBCustomer.bankDisclaimer.append(" For UOB...");
         secondUOBCustomer.displayTransaction();
     
+        UOB thirdUOBCustomer = secondUOBCustomer; // make thirdUOBCustomer a twin of secondUOBCustomer to avoid having to manually instantiating all the variables again for thirdUOBCustomer
+        secondUOBCustomer.accountNumber = 3000;
+        thirdUOBCustomer.accountNumber = 4000;
+        System.out.println("From second UOB customer" + secondUOBCustomer.accountNumber);
+        
     //CitiBank Transactions
     CitiBank firstCitiCustomer = new CitiBank(); //Object reference available. create a class constructor and new copies will be put into the object UOB.
         
@@ -47,7 +56,15 @@ public class BankingApplication {
         firstCitiCustomer.accountType = "Entrepreneur Account";
         firstCitiCustomer.deposit(1_000_000);
         firstCitiCustomer.withdrawal(5_000_000);
+        firstCitiCustomer.bankDisclaimer.append(" For CitiBank ...");
+        
+        
         firstCitiCustomer.displayTransaction();
+        
+        
+        CitiBank secondCitiCustomer = firstCitiCustomer;
+        secondCitiCustomer.accountName = "Tom Cruise";
+        System.out.println("From firstCitiCustomer" + firstCitiCustomer.accountName);
     }
     
 }
