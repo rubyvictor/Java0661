@@ -28,18 +28,18 @@ public class BankingApplication {
         firstUOBCustomer.accountName = "Eva Longoria";
         firstUOBCustomer.accountType = "Savings Account";
         firstUOBCustomer.deposit(1000);
-        firstUOBCustomer.withdrawal(5000);
+        firstUOBCustomer.withdrawal(100);
         firstUOBCustomer.bankDisclaimer.append(" For UOB ...");
         firstUOBCustomer.displayTransaction();
         
-        //firstUOBCustomer.CLOSING_MONTHS = 11; cannot modify a final variable that is constant
+        
         
         UOB secondUOBCustomer = new UOB();
         secondUOBCustomer.accountNumber = 2000;
         secondUOBCustomer.accountName = "Jack Ryan";
         secondUOBCustomer.accountType = "Current Account";
         secondUOBCustomer.deposit(500);
-        secondUOBCustomer.withdrawal(1000);
+        secondUOBCustomer.withdrawal(-20);
         secondUOBCustomer.bankDisclaimer.append(" For UOB...");
         secondUOBCustomer.displayTransaction();
     
@@ -54,8 +54,8 @@ public class BankingApplication {
         firstCitiCustomer.accountNumber = 8000;
         firstCitiCustomer.accountName = "Donald Trump";
         firstCitiCustomer.accountType = "Entrepreneur Account";
-        firstCitiCustomer.deposit(1_000_000);
-        firstCitiCustomer.withdrawal(5_000_000);
+        firstCitiCustomer.deposit(20_000);
+        firstCitiCustomer.withdrawal(100);
         firstCitiCustomer.bankDisclaimer.append(" For CitiBank ...");
         
         

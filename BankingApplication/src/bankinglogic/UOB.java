@@ -26,17 +26,43 @@ public class UOB {
     
     public void deposit(double depositAmount){
         double interestRate = 0.10;//this is a local variable visible only to this method
-        accountBalance += (depositAmount + (depositAmount * interestRate));
+        //Normal if statement without ternary operator
+        /*double bonusAmount;
+        if (depositAmount >= 10_000)
+            bonusAmount = depositAmount * interestRate;
+        else bonusAmount = 0.0;
+        accountBalance += (depositAmount + bonusAmount);
+        */
+        //Use ternary operator
+        double bonusAmount = (depositAmount >= 10_000) ? (depositAmount * interestRate) : 0.0;
+        accountBalance += (depositAmount + bonusAmount);
     }
             
     public void withdrawal(double withdrawalAmount){
-        if (withdrawalAmount >= 2000 && accountType == "Savings Account") {
+        //Combined if else statement
+        /*if (withdrawalAmount >= 2000 && accountType == "Savings Account") {
             System.out.println("Sorry, you exceeded withdrawal limit. Please try again tomorrow." );
             
         }else {
             accountBalance -= withdrawalAmount;
         }
-        
+    
+        //Nesting if else statement
+        if (withdrawalAmount >= 2000) {
+            if (accountType == "Savings Account")
+                System.out.println("Sorry, you exceeded withdrawal limit. Please try again tomorrow." );
+                }
+                else
+            accountBalance -= withdrawalAmount;
+        */
+        //Chaining if statement
+        if (withdrawalAmount >=2000 && accountType == "Savings Account")
+            System.out.println("You exceeded withdrawal limit...");
+        else if (withdrawalAmount <= 0)
+            System.out.println("Error: Please enter a valid withdrawal amount");
+        else
+            accountBalance -= withdrawalAmount;
+    
     }
     
     public void displayTransaction(){
@@ -49,6 +75,42 @@ public class UOB {
     
     String disclaimerInCaps = bankDisclaimer.toString();
     System.out.println(disclaimerInCaps.toUpperCase());
+    closingMonthInWord();
     }
+    
+    public void closingMonthInWord(){
+        int month = CLOSING_MONTHS;
+        String monthString;
+        switch (month) {
+            case 1:  monthString = "January";
+                     break;
+            case 2:  monthString = "February";
+                     break;
+            case 3:  monthString = "March";
+                     break;
+            case 4:  monthString = "April";
+                     break;
+            case 5:  monthString = "May";
+                     break;
+            case 6:  monthString = "June";
+                     break;
+            case 7:  monthString = "July";
+                     break;
+            case 8:  monthString = "August";
+                     break;
+            case 9:  monthString = "September";
+                     break;
+            case 10: monthString = "October";
+                     break;
+            case 11: monthString = "November";
+                     break;
+            case 12: monthString = "December";
+                     break;
+            default: monthString = "Invalid month";
+                     break;
+        }
+        System.out.println("Closing month: " + monthString);
+    }
+    
     
 }
