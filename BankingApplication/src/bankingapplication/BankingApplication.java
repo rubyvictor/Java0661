@@ -35,6 +35,8 @@ public class BankingApplication {
         UOB secondUOBCustomer = new UOB();
         Transactions(secondUOBCustomer, 2000, "Jack Ryan", "Current Account", 500, 20);
         
+        //to test constructor calling with parameters, must remove the static in variable
+        //UOB thirdUOBCustomer = new UOB(1);
         
         //Store UOB Customers into an array. This is better done in separate data class
         UOB [] UOBCustomers = {firstUOBCustomer, secondUOBCustomer};

@@ -96,6 +96,16 @@ public class UOB {
     //public String [] bankBranches = new String[3]; //declare and instantiate new array
     public String [] bankBranches = {"North", "South", "East"};
     
+    //Constructor - for Database coding. can over load the constructor. i.e. many constructors
+    //can initialize final variables inside constructor but the initalization above remove 'Static' and remove '12'
+//    public UOB(){
+//     CLOSING_MONTHS = 12;   
+//    }
+//    
+//    public UOB(int month){
+//        CLOSING_MONTHS = month;
+//    }
+    
     public void deposit(double depositAmount){
         double interestRate = 0.10;//this is a local variable visible only to this method
         //Normal if statement without ternary operator
