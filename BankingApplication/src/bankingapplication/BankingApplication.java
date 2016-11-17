@@ -79,7 +79,7 @@ public class BankingApplication {
         ArrayList bankCustomers = new ArrayList();
         bankCustomers.add(firstUOBCustomer);
         bankCustomers.add(secondUOBCustomer);
-        bankCustomers.add(firstCitiCustomer);
+        //bankCustomers.add(firstCitiCustomer);
         
         
         //Making a twin
@@ -91,15 +91,49 @@ public class BankingApplication {
         CitiBank [] CitiCustomers = {firstCitiCustomer,secondCitiCustomer};
         
         //Summary list of all banking customers
-        //Use Object Casting to accomodate the ArrayList
+        //Use Object Casting to accomodate the ArrayList.  Cast with UOB and Cast with CitiBank in order to access the fields inside ArrayList
         System.out.println("*****Summary of Bank customers*****");
-        System.out.print(((UOB)(bankCustomers.get(0))).accountNumber);
+        //Use a Loop to minimize code duplication
+        //Use a size() function to get the length of the collection if you don't know
+        
+//        int itemNumber = 0;
+//        while (itemNumber < bankCustomers.size() -1) {
+//        System.out.println(((UOB)(bankCustomers.get(itemNumber))).accountNumber);
+//        System.out.println((((UOB)(bankCustomers.get(itemNumber)))).accountName);
+//        ++itemNumber;
+//        }
+        //Another way using for loop
+        for (int itemNumber2 = 0; itemNumber2 < bankCustomers.size()-1;++itemNumber2){
+            System.out.println(((UOB)(bankCustomers.get(itemNumber2))).accountNumber);
+        System.out.println((((UOB)(bankCustomers.get(itemNumber2)))).accountName);
+        }
+        
+        //Enhanced ForLoop - element types must match data types in the Forloop
+        //For ArrayList, the data type is Object, not UOB nor CitiBank
+        //For Casting of different type of Objects, eg. UOB or CitiBank Objects, can find out first. KEYWORD: instance of. 
+        for (Object customer: bankCustomers) {
+            
+            System.out.println("Account Number is: " + ((UOB)customer).accountNumber);
+            System.out.println("Account Name is: " + ((UOB)customer).accountName);
+            System.out.println("AccountType is: " + ((UOB)customer).accountType);
+            if (((UOB)customer).accountType == "Savings Account");{
+                System.out.println("Customer found with " + ((UOB)customer).accountType);
+                //break;// cannot be used for filtering, because break already can't see other customers with savings account
+                continue;
+            }
+        }
+        
+            
+        
+   
+        
+        /*System.out.print(((UOB)(bankCustomers.get(0))).accountNumber);
         System.out.println(((UOB)bankCustomers.get(0)).accountName);
         System.out.print(((UOB)(bankCustomers.get(1))).accountNumber);
         System.out.println(((UOB)bankCustomers.get(1)).accountName);
         System.out.print(((CitiBank)(bankCustomers.get(2))).accountNumber);
         System.out.println(((CitiBank)bankCustomers.get(2)).accountName);
-        
+        */
         System.out.println("***********************************");
         
     }
