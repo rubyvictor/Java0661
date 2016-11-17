@@ -19,37 +19,21 @@ public class BankingApplication {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+       
         //instantiate an instance of the UOB class ie create an object which will hold a copy of the object - need to import bankinglogic package
         //or can fully qualify without import but repetitive.  bankinglogic.UOB firstUOBCustomer;
         
-        //UOB Transaction
+        //UOB Transaction.  Overloading all banking transactions into one method.
         UOB firstUOBCustomer;
         firstUOBCustomer = new UOB(); //Object reference available. create a class constructor and new copies will be put into the object UOB.
         
-        firstUOBCustomer.accountNumber = 1000;
-        //use parsing of data into the String[] args
-        //inside terminal: java BankingApplication 1000 "Eva Longoria"
-        //firstUOBCustomer.accountNumber = Integer.parseInt(args[0]);
-        firstUOBCustomer.accountName = "Eva Longoria";
-        //firstUOBCustomer.accountName = args[1];
-        firstUOBCustomer.accountType = "Savings Account";
-        firstUOBCustomer.deposit(1000);
-        firstUOBCustomer.withdrawal(100,2000);
-        firstUOBCustomer.bankDisclaimer.append(" For UOB ...");
-        firstUOBCustomer.displayTransaction();
-        
+        Transactions(firstUOBCustomer, 1000, "Eva Longoria", "Savings Account", 1000, 5000);
         
         
         UOB secondUOBCustomer = new UOB();
-        secondUOBCustomer.accountNumber = 2000;
-        secondUOBCustomer.accountName = "Jack Ryan";
-        secondUOBCustomer.accountType = "Current Account";
-        secondUOBCustomer.deposit(500);
-        secondUOBCustomer.withdrawal(-20,2000);
-        secondUOBCustomer.bankDisclaimer.append(" For UOB...");
-        secondUOBCustomer.displayTransaction();
-    
+        Transactions(secondUOBCustomer, 2000, "Jack Ryan", "Current Account", 500, 20);
+        
+        
         //Store UOB Customers into an array. This is better done in separate data class
         UOB [] UOBCustomers = {firstUOBCustomer, secondUOBCustomer};
         //Use ArrayList to store UOB Customers. can store any data type. Object Type. Can store both citibank and UOB customers.
@@ -65,21 +49,14 @@ public class BankingApplication {
         thirdUOBCustomer.accountNumber = 4000;
         System.out.println("From second UOB customer" + secondUOBCustomer.accountNumber);
         
-    //CitiBank Transactions
-    CitiBank firstCitiCustomer = new CitiBank(); //Object reference available. create a class constructor and new copies will be put into the object UOB.
-        
-        firstCitiCustomer.accountNumber = 8000;
-        firstCitiCustomer.accountName = "Donald Trump";
-        firstCitiCustomer.accountType = "Entrepreneur Account";
-        firstCitiCustomer.deposit(20_000);
-        firstCitiCustomer.withdrawal(100,2000);
-        firstCitiCustomer.bankDisclaimer.append(" For CitiBank ...");
-        firstCitiCustomer.displayTransaction();
-        
+        //CitiBank Transactions
+        CitiBank firstCitiCustomer = new CitiBank(); //Object reference available. create a class constructor and new copies will be put into the object UOB.
+        Transactions(firstCitiCustomer, 8000, "Donald Trump", "Current Account", 20000, 100);
+    
+        //Create ArrayList of bankCustomers
         ArrayList bankCustomers = new ArrayList();
         bankCustomers.add(firstUOBCustomer);
         bankCustomers.add(secondUOBCustomer);
-        //bankCustomers.add(firstCitiCustomer);
         
         
         //Making a twin
@@ -96,27 +73,28 @@ public class BankingApplication {
         //Use a Loop to minimize code duplication
         //Use a size() function to get the length of the collection if you don't know
         
+        //OPTION 1: WHILE LOOP
 //        int itemNumber = 0;
 //        while (itemNumber < bankCustomers.size() -1) {
 //        System.out.println(((UOB)(bankCustomers.get(itemNumber))).accountNumber);
 //        System.out.println((((UOB)(bankCustomers.get(itemNumber)))).accountName);
 //        ++itemNumber;
 //        }
-        //Another way using for loop
+        //OPTION 2: FOR LOOP
 //        for (int itemNumber2 = 0; itemNumber2 < bankCustomers.size()-1;++itemNumber2){
 //            System.out.println(((UOB)(bankCustomers.get(itemNumber2))).accountNumber);
 //        System.out.println((((UOB)(bankCustomers.get(itemNumber2)))).accountName);
 //        }
         
-        //Enhanced ForLoop - element types must match data types in the Forloop
+        //OPTION 3: Enhanced ForLoop with nested If - element types must match data types in the Forloop
         //For ArrayList, the data type is Object, not UOB nor CitiBank
         //For Casting of different type of Objects, eg. UOB or CitiBank Objects, can find out first. KEYWORD: instance of. 
         for (Object customer: bankCustomers) {
             
-            if (((UOB)customer).accountType == "Current Account"){
+            if (((UOB)customer).accountType != "Current Account"){
 //            System.out.println("Customer found with " + ((UOB)customer).accountType);
                 //break;// cannot be used for filtering, because break already can't see other customers with savings account
-                break;//Use to force another iteration and skip codes after Continue
+                continue;//Use "continue" to force another iteration and skip codes after Continue
             }
         
             System.out.println("Account Number is: " + ((UOB)customer).accountNumber);
@@ -138,5 +116,31 @@ public class BankingApplication {
         System.out.println("***********************************");
         
     }
+//CREATE METHODS TO HOUSE UOB AND CITIBANK TRANSACTIONS - OVERLOADING. same method name with different signatures
+    public static void Transactions (UOB UOBCustomer, int acctNo, String acctName, String acctType, double depoAmount, double withAmount)
+    {
+        UOBCustomer.accountNumber = acctNo;
+        UOBCustomer.accountName = acctName;
+        UOBCustomer.accountType = acctType;
+        UOBCustomer.deposit(depoAmount);
+        UOBCustomer.withdrawal(withAmount,3000);
+        UOBCustomer.bankDisclaimer.append(" For UOB ...");
+        UOBCustomer.displayTransaction();
+        System.out.println(UOBCustomer.bankPolicy());
+        System.out.println(UOBCustomer);
+    }
     
+public static void Transactions (CitiBank CitiCustomer, int acctNo, String acctName, String acctType, double depoAmount, double withAmount)
+    {
+        CitiCustomer.accountNumber = acctNo;
+        CitiCustomer.accountName = acctName;
+        CitiCustomer.accountType = acctType;
+        CitiCustomer.deposit(depoAmount);
+        CitiCustomer.withdrawal(withAmount,2000);
+        CitiCustomer.bankDisclaimer.append(" For CitiBank ...");
+        CitiCustomer.displayTransaction();
+        System.out.println(CitiCustomer.bankPolicy());
+        System.out.println(CitiCustomer);
+    }
+
 }

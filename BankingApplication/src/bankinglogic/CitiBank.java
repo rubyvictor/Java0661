@@ -20,7 +20,7 @@ public class CitiBank {
     //public String [] bankBranches = new String[4];
     public String [] bankBranches = {"North", "South","East", "West"};
             
-    public void deposit(long depositAmount){
+    public void deposit(double depositAmount){
         double interestRate = 0.10;//this is a local variable visible only to this method
         
         double bonusAmount = (depositAmount >= 20_000) ? (depositAmount * interestRate) : 0.0;
@@ -98,4 +98,11 @@ public class CitiBank {
         }
         System.out.println("Closing Month: " + monthString);
     }
+    
+    //This is a function that returns something of a data type.  It is not void. 
+    public String bankPolicy(){
+        return "No deposits less than 1000...";
+    }
+
+
 }

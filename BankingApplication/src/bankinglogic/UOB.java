@@ -123,5 +123,8 @@ public class UOB {
         System.out.println("Closing month: " + monthString);
     }
     
-    
+    //This is a function that returns something of a data type.  It is not void. 
+    public String bankPolicy(){
+        return "No deposits less than 1000...";
+    }
 }
