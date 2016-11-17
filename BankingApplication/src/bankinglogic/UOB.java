@@ -39,8 +39,10 @@ public class UOB {
         double bonusAmount = (depositAmount >= 10_000) ? (depositAmount * interestRate) : 0.0;
         accountBalance += (depositAmount + bonusAmount);
     }
-            
-    public void withdrawal(double withdrawalAmount){
+    
+    //Add two parameters to method
+    public void withdrawal(double withdrawalAmount,
+            double withdrawalLimit){
         //Combined if else statement
         /*if (withdrawalAmount >= 2000 && accountType == "Savings Account") {
             System.out.println("Sorry, you exceeded withdrawal limit. Please try again tomorrow." );
@@ -57,8 +59,10 @@ public class UOB {
                 else
             accountBalance -= withdrawalAmount;
         */
+        
+        
         //Chaining if statement
-        if (withdrawalAmount >=2000 && accountType == "Savings Account")
+        if (withdrawalAmount >=withdrawalLimit && accountType == "Savings Account")
             System.out.println("You exceeded withdrawal limit...");
         else if (withdrawalAmount <= 0)
             System.out.println("Error: Please enter a valid withdrawal amount");

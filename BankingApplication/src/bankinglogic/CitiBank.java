@@ -27,10 +27,11 @@ public class CitiBank {
         accountBalance += (depositAmount + bonusAmount);
     }
             
-    public void withdrawal(double withdrawalAmount){
+    public void withdrawal(double withdrawalAmount,
+            double withdrawalLimit){
         //interestRate = 0.50;this method cannot access the interestRate var in deposit method
         
-        if (withdrawalAmount >=2000 && accountType == "Savings Account")
+        if (withdrawalAmount >= withdrawalLimit && accountType == "Savings Account")
             System.out.println("You exceeded withdrawal limit...");
         else if (withdrawalAmount <= 0)
             System.out.println("Error: Please enter a valid withdrawal amount");

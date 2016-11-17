@@ -35,7 +35,7 @@ public class BankingApplication {
         //firstUOBCustomer.accountName = args[1];
         firstUOBCustomer.accountType = "Savings Account";
         firstUOBCustomer.deposit(1000);
-        firstUOBCustomer.withdrawal(100);
+        firstUOBCustomer.withdrawal(100,2000);
         firstUOBCustomer.bankDisclaimer.append(" For UOB ...");
         firstUOBCustomer.displayTransaction();
         
@@ -46,7 +46,7 @@ public class BankingApplication {
         secondUOBCustomer.accountName = "Jack Ryan";
         secondUOBCustomer.accountType = "Current Account";
         secondUOBCustomer.deposit(500);
-        secondUOBCustomer.withdrawal(-20);
+        secondUOBCustomer.withdrawal(-20,2000);
         secondUOBCustomer.bankDisclaimer.append(" For UOB...");
         secondUOBCustomer.displayTransaction();
     
@@ -72,7 +72,7 @@ public class BankingApplication {
         firstCitiCustomer.accountName = "Donald Trump";
         firstCitiCustomer.accountType = "Entrepreneur Account";
         firstCitiCustomer.deposit(20_000);
-        firstCitiCustomer.withdrawal(100);
+        firstCitiCustomer.withdrawal(100,2000);
         firstCitiCustomer.bankDisclaimer.append(" For CitiBank ...");
         firstCitiCustomer.displayTransaction();
         
