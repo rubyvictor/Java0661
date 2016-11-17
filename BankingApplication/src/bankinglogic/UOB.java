@@ -14,14 +14,84 @@ package bankinglogic;
  * @author Student
  */
 public class UOB {
+
+    /**
+     * @return the accountNumber
+     */
+    public int getAccountNumber() {
+        return accountNumber;
+    }
+
+    /**
+     * @param accountNumber the accountNumber to set
+     */
+    public void setAccountNumber(int accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    /**
+     * @return the accountName
+     */
+    public String getAccountName() {
+        return accountName;
+    }
+
+    /**
+     * @param accountName the accountName to set
+     */
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
+    }
+
+    /**
+     * @return the accountType
+     */
+    public String getAccountType() {
+        return accountType;
+    }
+
+    /**
+     * @param accountType the accountType to set
+     */
+    public void setAccountType(String accountType) {
+        if (accountType == "Savings Account" || accountType == "Current Account")
+        this.accountType = accountType;
+        else{
+            System.out.println("Invalid Account Type..:");
+            this.accountType = "Invalid Acount";
+        }
+        
+        
+    }
+
+    /**
+     * @return the accountBalance
+     */
+    public double getAccountBalance() {
+        return accountBalance;
+    }
+
+    /**
+     * @return the accountActive
+     */
+    public boolean isAccountActive() {
+        return accountActive;
+    }
+
+    /**
+     * @param accountActive the accountActive to set
+     */
+    public void setAccountActive(boolean accountActive) {
+        this.accountActive = accountActive;
+    }
     //put attributes and methods
     
-    public int accountNumber = 1000;//public is an access modifier.  Use public to make this var accessible in the same class or package
-    public String accountName = "Victor Lee";//if no public access modifier, then var becomes local accessible within this class only
-    public String accountType = "";
-    public double accountBalance = 0.0;
-    public boolean accountActive = true;
-    public final int CLOSING_MONTHS = 12;
+    private int accountNumber = 1000;
+    private String accountName = "Victor Lee";
+    private String accountType = "";
+    private double accountBalance = 0.0;
+    private boolean accountActive = true;
+    public static final int CLOSING_MONTHS = 12;
     public StringBuilder bankDisclaimer = new StringBuilder("Disclaimer blah blah blah");//this is a String but mutable because of StringBuilder
     //public String [] bankBranches = new String[3]; //declare and instantiate new array
     public String [] bankBranches = {"North", "South", "East"};
@@ -62,7 +132,7 @@ public class UOB {
         
         
         //Chaining if statement
-        if (withdrawalAmount >=withdrawalLimit && accountType == "Savings Account")
+        if (withdrawalAmount >=withdrawalLimit && getAccountType() == "Savings Account")
             System.out.println("You exceeded withdrawal limit...");
         else if (withdrawalAmount <= 0)
             System.out.println("Error: Please enter a valid withdrawal amount");
@@ -72,11 +142,11 @@ public class UOB {
     }
     
     public void displayTransaction(){
-    System.out.println("Account No:" + accountNumber);
-    System.out.println("Account Name:" + accountName);
-    System.out.println("Account Type:" + accountType);
-    System.out.println("New Account Balance:" + accountBalance);
-    System.out.println("Account Status:" + accountActive);
+    System.out.println("Account No:" + getAccountNumber());
+    System.out.println("Account Name:" + getAccountName());
+    System.out.println("Account Type:" + getAccountType());
+    System.out.println("New Account Balance:" + getAccountBalance());
+    System.out.println("Account Status:" + isAccountActive());
     //System.out.println("Disclaimer:" + bankDisclaimer);
     
     String disclaimerInCaps = bankDisclaimer.toString();
@@ -124,7 +194,7 @@ public class UOB {
     }
     
     //This is a function that returns something of a data type.  It is not void. 
-    public String bankPolicy(){
+    public static String bankPolicy(){
         return "No deposits less than 1000...";
     }
 }
