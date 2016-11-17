@@ -103,24 +103,25 @@ public class BankingApplication {
 //        ++itemNumber;
 //        }
         //Another way using for loop
-        for (int itemNumber2 = 0; itemNumber2 < bankCustomers.size()-1;++itemNumber2){
-            System.out.println(((UOB)(bankCustomers.get(itemNumber2))).accountNumber);
-        System.out.println((((UOB)(bankCustomers.get(itemNumber2)))).accountName);
-        }
+//        for (int itemNumber2 = 0; itemNumber2 < bankCustomers.size()-1;++itemNumber2){
+//            System.out.println(((UOB)(bankCustomers.get(itemNumber2))).accountNumber);
+//        System.out.println((((UOB)(bankCustomers.get(itemNumber2)))).accountName);
+//        }
         
         //Enhanced ForLoop - element types must match data types in the Forloop
         //For ArrayList, the data type is Object, not UOB nor CitiBank
         //For Casting of different type of Objects, eg. UOB or CitiBank Objects, can find out first. KEYWORD: instance of. 
         for (Object customer: bankCustomers) {
             
+            if (((UOB)customer).accountType == "Current Account"){
+//            System.out.println("Customer found with " + ((UOB)customer).accountType);
+                //break;// cannot be used for filtering, because break already can't see other customers with savings account
+                break;//Use to force another iteration and skip codes after Continue
+            }
+        
             System.out.println("Account Number is: " + ((UOB)customer).accountNumber);
             System.out.println("Account Name is: " + ((UOB)customer).accountName);
             System.out.println("AccountType is: " + ((UOB)customer).accountType);
-            if (((UOB)customer).accountType == "Savings Account");{
-                System.out.println("Customer found with " + ((UOB)customer).accountType);
-                //break;// cannot be used for filtering, because break already can't see other customers with savings account
-                continue;
-            }
         }
         
             
