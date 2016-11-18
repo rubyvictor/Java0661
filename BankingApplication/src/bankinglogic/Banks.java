@@ -56,12 +56,14 @@ public abstract class Banks implements ITransactions {
      * @param accountType the accountType to set
      */
     @Override
-    public void setAccountType(String accountType) {
+    public void setAccountType(String accountType) throws Exception {
         if (accountType == "Savings Account" || accountType == "Current Account")
         this.accountType = accountType;
         else{
-            System.out.println("Invalid Account Type..:");
             this.accountType = "Invalid Acount";
+            throw new Exception("Invalid Account");
+            
+            
         }
         
         

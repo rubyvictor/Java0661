@@ -22,10 +22,11 @@ public class BankingApplication {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       
+       //Error Handling
+        try {
         //instantiate an instance of the UOB class ie create an object which will hold a copy of the object - need to import bankinglogic package
         //or can fully qualify without import but repetitive.  bankinglogic.UOB firstUOBCustomer;
-        
+                
         //UOB Transaction.  Overloading all banking transactions into one method.
         UOB firstUOBCustomer;
         firstUOBCustomer = new UOB(); //Object reference available. create a class constructor and new copies will be put into the object UOB.
@@ -72,9 +73,13 @@ public class BankingApplication {
         //Create ArrayList of bankCustomers
         ArrayList bankCustomers = new ArrayList();
         bankCustomers.add(firstUOBCustomer);
-        bankCustomers.add(secondUOBCustomer);
-        bankCustomers.add(thirdUOBCustomer);
-        bankCustomers.add(firstCitiCustomer);
+            bankCustomers.add(secondUOBCustomer);
+            bankCustomers.add(thirdUOBCustomer);
+            bankCustomers.add(firstCitiCustomer);
+            bankCustomers.add("firstCitiCustomer");//test runtime error
+        
+        
+        
         
         //Add CPF transactions
         CPF firstCPFCustomer = new CPF();
@@ -89,9 +94,36 @@ public class BankingApplication {
         //Store CitiCustomers into an array. This should be done in separate data class.
 //        CitiBank [] CitiCustomers = {firstCitiCustomer,secondCitiCustomer};
         
+        System.out.println("*****Summary of Bank customers*****");
+        
+        
+           //OPTION 3: Enhanced ForLoop with nested If - element types must match data types in the Forloop
+        //For ArrayList, the data type is Object, not UOB nor CitiBank
+        //For Casting of different type of Objects, eg. UOB or CitiBank Objects, can find out first. KEYWORD: instance of.
+            for (Object customer: bankCustomers) {
+            
+            if (((Banks)customer).getAccountType() != "Current Account"){
+//            System.out.println("Customer found with " + ((UOB)customer).accountType);
+                //break;// cannot be used for filtering, because break already can't see other customers with savings account
+                continue;//Use "continue" to force another iteration and skip codes after Continue
+            }
+        
+            System.out.println("Account Number is: " + ((Banks)customer).getAccountNumber());
+            System.out.println("Account Name is: " + ((Banks)customer).getAccountName());
+            System.out.println("AccountType is: " + ((Banks)customer).getAccountType());
+            System.out.println("A CPF customer: " + firstCPFCustomer);
+            System.out.println("***********************************");
+            } 
+        }
+        catch (Exception error) {
+            System.out.println("Oops Something went wrong, contact support. Thank you.");
+        }
+        catch (OutOfMemoryError error2) {
+            System.out.println("Something went wrong again, pls contact support. ");
+        }
         //Summary list of all banking customers
         //Use Object Casting to accomodate the ArrayList.  Cast with UOB and Cast with CitiBank in order to access the fields inside ArrayList
-        System.out.println("*****Summary of Bank customers*****");
+        
         //Use a Loop to minimize code duplication
         //Use a size() function to get the length of the collection if you don't know
         
@@ -108,25 +140,7 @@ public class BankingApplication {
 //        System.out.println((((UOB)(bankCustomers.get(itemNumber2)))).accountName);
 //        }
         
-        //OPTION 3: Enhanced ForLoop with nested If - element types must match data types in the Forloop
-        //For ArrayList, the data type is Object, not UOB nor CitiBank
-        //For Casting of different type of Objects, eg. UOB or CitiBank Objects, can find out first. KEYWORD: instance of. 
-        for (Object customer: bankCustomers) {
-            
-            if (((Banks)customer).getAccountType() != "Current Account"){
-//            System.out.println("Customer found with " + ((UOB)customer).accountType);
-                //break;// cannot be used for filtering, because break already can't see other customers with savings account
-                continue;//Use "continue" to force another iteration and skip codes after Continue
-            }
-        
-            System.out.println("Account Number is: " + ((Banks)customer).getAccountNumber());
-            System.out.println("Account Name is: " + ((Banks)customer).getAccountName());
-            System.out.println("AccountType is: " + ((Banks)customer).getAccountType());
-        }
-        
-            
-        
-   
+         
         
         /*System.out.print(((UOB)(bankCustomers.get(0))).accountNumber);
         System.out.println(((UOB)bankCustomers.get(0)).accountName);
@@ -135,13 +149,13 @@ public class BankingApplication {
         System.out.print(((CitiBank)(bankCustomers.get(2))).accountNumber);
         System.out.println(((CitiBank)bankCustomers.get(2)).accountName);
         */
-        System.out.println("***********************************");
+        
         //prints memory address for CPF customer
-        System.out.println("A CPF customer: " + firstCPFCustomer);
+        
     }
 //CREATE METHODS TO HOUSE UOB AND CITIBANK TRANSACTIONS - OVERLOADING. same method name with different signatures
     //Use Interface to get transactions for either banks or CPF
-    public static void Transactions (ITransactions Customer, int acctNo, String acctName, String acctType, double depoAmount, double withAmount)
+    public static void Transactions (ITransactions Customer, int acctNo, String acctName, String acctType, double depoAmount, double withAmount) throws Exception
     {
         System.out.println(Banks.bankPolicy());
         Customer.setAccountNumber(acctNo);

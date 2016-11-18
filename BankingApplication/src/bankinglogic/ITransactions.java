@@ -64,7 +64,8 @@ public interface ITransactions {
     /**
      * @param accountType the accountType to set
      */
-    void setAccountType(String accountType);
+    //COnfigure interface to throw exception too
+    void setAccountType(String accountType) throws Exception;
 
     //Add two parameters to method
     //make method final to prevent child from overriding it OR prevent subclassing

@@ -211,6 +211,8 @@ public class CPF implements ITransactions {
         return "Bank Policy: No deposits less than 1000...";
     }
 
+    //IMPORTANT:  override String method to be able to print out object business values instead of memory addresses
+    
     @Override
     public String toString() {
         return "CPF{" + "accountNumber=" + accountNumber + ", accountName=" + accountName + ", accountType=" + accountType + ", accountBalance=" + accountBalance + ", accountActive=" + accountActive + ", CLOSING_MONTHS=" + CLOSING_MONTHS + '}';
