@@ -30,13 +30,15 @@ public class BankingApplication {
         Transactions(firstUOBCustomer, 1000, "Eva Longoria", "Savings Account", 1000, 5000);
         
         //Static: Call the class UOB for closing months without instantiating.
-        System.out.println(UOB.CLOSING_MONTHS);
+        //System.out.println(Banks.CLOSING_MONTHS);//With constructor, this is not possible
         
         UOB secondUOBCustomer = new UOB();
         Transactions(secondUOBCustomer, 2000, "Jack Ryan", "Current Account", 500, 20);
         
         //to test constructor calling with parameters, must remove the static in variable
-        //UOB thirdUOBCustomer = new UOB(1);
+        //Constructor practice
+        UOB thirdUOBCustomer = new UOB(1);
+        UOB fourthUOBCustomer = new UOB(2);
         
         //Store UOB Customers into an array. This is better done in separate data class
         UOB [] UOBCustomers = {firstUOBCustomer, secondUOBCustomer};
@@ -48,7 +50,7 @@ public class BankingApplication {
         //not good practice to box or cast to unbox. lying to Java.
         //int mynumber = (int)anything;//boxing process will not work. anything is unknown, not an int. So need to CAST to unbox.
         
-        UOB thirdUOBCustomer = secondUOBCustomer; // make thirdUOBCustomer a twin of secondUOBCustomer to avoid having to manually instantiating all the variables again for thirdUOBCustomer
+//        UOB thirdUOBCustomer = secondUOBCustomer; // make thirdUOBCustomer a twin of secondUOBCustomer to avoid having to manually instantiating all the variables again for thirdUOBCustomer
         secondUOBCustomer.setAccountNumber(3000);
         thirdUOBCustomer.setAccountNumber(4000);
         System.out.println("From second UOB customer" + secondUOBCustomer.getAccountNumber());
