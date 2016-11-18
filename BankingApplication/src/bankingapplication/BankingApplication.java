@@ -5,6 +5,7 @@
  */
 package bankingapplication;
 
+import bankinglogic.Banks;
 import bankinglogic.CitiBank;
 import bankinglogic.UOB;
 import java.util.ArrayList;
@@ -40,8 +41,11 @@ public class BankingApplication {
         UOB thirdUOBCustomer = new UOB(1);
         UOB fourthUOBCustomer = new UOB(2);
         
+        Banks fifthUOBCustomer = new UOB();//parent class can hold copies of child classes
+        
+        
         //Store UOB Customers into an array. This is better done in separate data class
-        UOB [] UOBCustomers = {firstUOBCustomer, secondUOBCustomer};
+//        UOB [] UOBCustomers = {firstUOBCustomer, secondUOBCustomer};
         //Use ArrayList to store UOB Customers. can store any data type. Object Type. Can store both citibank and UOB customers.
         
         
@@ -59,19 +63,24 @@ public class BankingApplication {
         CitiBank firstCitiCustomer = new CitiBank(); //Object reference available. create a class constructor and new copies will be put into the object UOB.
         Transactions(firstCitiCustomer, 8000, "Donald Trump", "Current Account", 20000, 100);
     
+        //Constructor parent can hold child copy
+//        Banks secondCitiCustomer = new CitiBank();
+//        Banks thirdCitiCustomer = firstCitiCustomer;
+        
         //Create ArrayList of bankCustomers
         ArrayList bankCustomers = new ArrayList();
         bankCustomers.add(firstUOBCustomer);
         bankCustomers.add(secondUOBCustomer);
+        bankCustomers.add(firstCitiCustomer);
         
         
         //Making a twin
-        CitiBank secondCitiCustomer = firstCitiCustomer;
-        secondCitiCustomer.setAccountName("FantasticFour");
-        System.out.println("From firstCitiCustomer" + firstCitiCustomer.getAccountName());
+//        CitiBank secondCitiCustomer = firstCitiCustomer;
+//        secondCitiCustomer.setAccountName("FantasticFour");
+//        System.out.println("From firstCitiCustomer" + firstCitiCustomer.getAccountName());
         
         //Store CitiCustomers into an array. This should be done in separate data class.
-        CitiBank [] CitiCustomers = {firstCitiCustomer,secondCitiCustomer};
+//        CitiBank [] CitiCustomers = {firstCitiCustomer,secondCitiCustomer};
         
         //Summary list of all banking customers
         //Use Object Casting to accomodate the ArrayList.  Cast with UOB and Cast with CitiBank in order to access the fields inside ArrayList
@@ -97,15 +106,15 @@ public class BankingApplication {
         //For Casting of different type of Objects, eg. UOB or CitiBank Objects, can find out first. KEYWORD: instance of. 
         for (Object customer: bankCustomers) {
             
-            if (((UOB)customer).getAccountType() != "Current Account"){
+            if (((Banks)customer).getAccountType() != "Current Account"){
 //            System.out.println("Customer found with " + ((UOB)customer).accountType);
                 //break;// cannot be used for filtering, because break already can't see other customers with savings account
                 continue;//Use "continue" to force another iteration and skip codes after Continue
             }
         
-            System.out.println("Account Number is: " + ((UOB)customer).getAccountNumber());
-            System.out.println("Account Name is: " + ((UOB)customer).getAccountName());
-            System.out.println("AccountType is: " + ((UOB)customer).getAccountType());
+            System.out.println("Account Number is: " + ((Banks)customer).getAccountNumber());
+            System.out.println("Account Name is: " + ((Banks)customer).getAccountName());
+            System.out.println("AccountType is: " + ((Banks)customer).getAccountType());
         }
         
             
@@ -123,30 +132,27 @@ public class BankingApplication {
         
     }
 //CREATE METHODS TO HOUSE UOB AND CITIBANK TRANSACTIONS - OVERLOADING. same method name with different signatures
-    public static void Transactions (UOB UOBCustomer, int acctNo, String acctName, String acctType, double depoAmount, double withAmount)
+    public static void Transactions (Banks Customer, int acctNo, String acctName, String acctType, double depoAmount, double withAmount)
     {
-        UOBCustomer.setAccountNumber(acctNo);
-        UOBCustomer.setAccountName(acctName);
-        UOBCustomer.setAccountType(acctType);
-        UOBCustomer.deposit(depoAmount);
-        UOBCustomer.withdrawal(withAmount,3000);
-        UOBCustomer.bankDisclaimer.append(" For UOB ...");
-        UOBCustomer.displayTransaction();
-        System.out.println(UOB.bankPolicy());//STATIC: call UOB class directly without instantiating.
-        System.out.println(UOBCustomer);
+        Customer.setAccountNumber(acctNo);
+        Customer.setAccountName(acctName);
+        Customer.setAccountType(acctType);
+        Customer.deposit(depoAmount);
+        Customer.withdrawal(withAmount,3000);
+        
+        //Parent checks for correct disclaimer using instanceof keyword
+        if (Customer instanceof UOB){
+            Customer.bankDisclaimer.append(" For UOB ...");
+        }else {
+            Customer.bankDisclaimer.append(" For CitiBank ...");
+            ((CitiBank)Customer).citiBankPromotion();//something only for CitiBank Customers
+        }
+        Customer.displayTransaction();
+        System.out.println(Banks.bankPolicy());
+        System.out.println();
+        
     }
     
-public static void Transactions (CitiBank CitiCustomer, int acctNo, String acctName, String acctType, double depoAmount, double withAmount)
-    {
-        CitiCustomer.setAccountNumber(acctNo);
-        CitiCustomer.setAccountName(acctName);
-        CitiCustomer.setAccountType(acctType);
-        CitiCustomer.deposit(depoAmount);
-        CitiCustomer.withdrawal(withAmount,2000);
-        CitiCustomer.bankDisclaimer.append(" For CitiBank ...");
-        CitiCustomer.displayTransaction();
-        System.out.println(CitiBank.bankPolicy());//STATIC: call CitiBank class directly without instantiating. 
-        System.out.println(CitiCustomer);
-    }
+
 
 }

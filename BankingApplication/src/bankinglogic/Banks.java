@@ -102,7 +102,7 @@ public class Banks {
     }
     
     public void deposit(double depositAmount){
-        double interestRate = 0.10;//this is a local variable visible only to this method
+//        double interestRate = 0.10;//this is a local variable visible only to this method
         //Normal if statement without ternary operator
         /*double bonusAmount;
         if (depositAmount >= 10_000)
@@ -111,8 +111,11 @@ public class Banks {
         accountBalance += (depositAmount + bonusAmount);
         */
         //Use ternary operator
-        double bonusAmount = (depositAmount >= 10_000) ? (depositAmount * interestRate) : 0.0;
-        accountBalance += (depositAmount + bonusAmount);
+//        double bonusAmount = (depositAmount >= 10_000) ? (depositAmount * interestRate) : 0.0;
+//        accountBalance += (depositAmount + bonusAmount);
+
+        accountBalance += depositAmount;
+
     }
     
     //Add two parameters to method
@@ -162,6 +165,7 @@ public class Banks {
     System.out.println(bankBranches[0]);
     System.out.println(bankBranches[1]);
     System.out.println(bankBranches[2]);
+    System.out.println();
     }
     
     public void closingMonthInWord(){
@@ -201,6 +205,6 @@ public class Banks {
     //This is a function that returns something of a data type.  It is not void.
     //Make Static to share it with everyone without making a copy of it and instantiating.
     public static String bankPolicy(){
-        return "No deposits less than 1000...";
+        return "Bank Policy: No deposits less than 1000...";
     }
 }

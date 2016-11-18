@@ -25,4 +25,15 @@ public class UOB extends Banks {
         super();
     }
     
+    
+   // override the bank's generic deposit method for UOB.
+    //use super because the base class already has private variable called deposit. Take it from there.
+    @Override //good practice to add this annotation
+    public void deposit(double depositAmount){
+        double interestRate = 0.10;
+        super.deposit(depositAmount +(depositAmount * interestRate));
+        System.out.println("Bonus added for UOB Customers");
+    }
+
+    
 }

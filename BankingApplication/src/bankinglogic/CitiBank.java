@@ -19,4 +19,8 @@ public class CitiBank extends Banks {
         super();
     }
     
+    public void citiBankPromotion(){
+        System.out.println("CitiBank customers get an insurance for each deposit");
+        
+    }
 }
