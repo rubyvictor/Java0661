@@ -9,7 +9,9 @@ package bankinglogic;
  *
  * @author victorlee
  */
-public class CitiBank extends Banks {
+//child class must override parent abstract methods because parent class is an Abstract class
+//make class final to prevent Citibank from becoming a PARENT
+public final class CitiBank extends Banks {
 
     public CitiBank(){
        super();
@@ -19,8 +21,15 @@ public class CitiBank extends Banks {
         super();
     }
     
+    
     public void citiBankPromotion(){
         System.out.println("CitiBank customers get an insurance for each deposit");
         
+    }
+
+    //implement abstractMethod to override parent abstract method
+    @Override
+    public void abstractMethod() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

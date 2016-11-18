@@ -6,7 +6,9 @@
 package bankingapplication;
 
 import bankinglogic.Banks;
+import bankinglogic.CPF;
 import bankinglogic.CitiBank;
+import bankinglogic.ITransactions;
 import bankinglogic.UOB;
 import java.util.ArrayList;
 
@@ -38,7 +40,7 @@ public class BankingApplication {
         
         //to test constructor calling with parameters, must remove the static in variable
         //Constructor practice
-        UOB thirdUOBCustomer = new UOB(1);
+        UOB thirdUOBCustomer = new UOB(1);//set closing month to 1 or January
         UOB fourthUOBCustomer = new UOB(2);
         
         Banks fifthUOBCustomer = new UOB();//parent class can hold copies of child classes
@@ -57,7 +59,7 @@ public class BankingApplication {
 //        UOB thirdUOBCustomer = secondUOBCustomer; // make thirdUOBCustomer a twin of secondUOBCustomer to avoid having to manually instantiating all the variables again for thirdUOBCustomer
         secondUOBCustomer.setAccountNumber(3000);
         thirdUOBCustomer.setAccountNumber(4000);
-        System.out.println("From second UOB customer" + secondUOBCustomer.getAccountNumber());
+//        System.out.println("From second UOB customer" + secondUOBCustomer.getAccountNumber());
         
         //CitiBank Transactions
         CitiBank firstCitiCustomer = new CitiBank(); //Object reference available. create a class constructor and new copies will be put into the object UOB.
@@ -71,7 +73,12 @@ public class BankingApplication {
         ArrayList bankCustomers = new ArrayList();
         bankCustomers.add(firstUOBCustomer);
         bankCustomers.add(secondUOBCustomer);
+        bankCustomers.add(thirdUOBCustomer);
         bankCustomers.add(firstCitiCustomer);
+        
+        //Add CPF transactions
+        CPF firstCPFCustomer = new CPF();
+        Transactions(firstCPFCustomer, 5000,"Michael Erich", "Special Account", 2000, 100);
         
         
         //Making a twin
@@ -132,8 +139,10 @@ public class BankingApplication {
         
     }
 //CREATE METHODS TO HOUSE UOB AND CITIBANK TRANSACTIONS - OVERLOADING. same method name with different signatures
-    public static void Transactions (Banks Customer, int acctNo, String acctName, String acctType, double depoAmount, double withAmount)
+    //Use Interface to get transactions for either banks or CPF
+    public static void Transactions (ITransactions Customer, int acctNo, String acctName, String acctType, double depoAmount, double withAmount)
     {
+        System.out.println(Banks.bankPolicy());
         Customer.setAccountNumber(acctNo);
         Customer.setAccountName(acctName);
         Customer.setAccountType(acctType);
@@ -141,14 +150,23 @@ public class BankingApplication {
         Customer.withdrawal(withAmount,3000);
         
         //Parent checks for correct disclaimer using instanceof keyword
+        //Need to cast Banks on customer to get bankDisclaimer variable since the interface doesn't have variables
         if (Customer instanceof UOB){
-            Customer.bankDisclaimer.append(" For UOB ...");
+            ((Banks)Customer).bankDisclaimer.append(" For UOB ...");
         }else {
-            Customer.bankDisclaimer.append(" For CitiBank ...");
+            if (Customer instanceof CitiBank){
+            
+            ((Banks)Customer).bankDisclaimer.append(" For CitiBank ...");
             ((CitiBank)Customer).citiBankPromotion();//something only for CitiBank Customers
+            }
+            else {
+            if (Customer instanceof CPF){
+                ((CPF)Customer).bankDisclaimer.append(" For CPF....");
+                }
+            }
         }
         Customer.displayTransaction();
-        System.out.println(Banks.bankPolicy());
+        
         System.out.println();
         
     }

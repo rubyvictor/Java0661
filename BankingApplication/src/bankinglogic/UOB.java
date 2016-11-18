@@ -15,7 +15,9 @@ package bankinglogic;
  */
 //constructors need to be specific to each class
 //THis CHILD can call the Parent class constructor
-public class UOB extends Banks {
+//Child class must override Parent abstract methods
+//make UOB class final to prevent it from becoming a parent class
+public final class UOB extends Banks {
 
     public UOB(){
        super();//make a call to the constructor of the parent
@@ -33,6 +35,12 @@ public class UOB extends Banks {
         double interestRate = 0.10;
         super.deposit(depositAmount +(depositAmount * interestRate));
         System.out.println("Bonus added for UOB Customers");
+    }
+
+    //implement abstractMethod to override parent abstract method
+    @Override
+    public void abstractMethod() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     
