@@ -136,7 +136,8 @@ public class BankingApplication {
         System.out.println(((CitiBank)bankCustomers.get(2)).accountName);
         */
         System.out.println("***********************************");
-        
+        //prints memory address for CPF customer
+        System.out.println("A CPF customer: " + firstCPFCustomer);
     }
 //CREATE METHODS TO HOUSE UOB AND CITIBANK TRANSACTIONS - OVERLOADING. same method name with different signatures
     //Use Interface to get transactions for either banks or CPF
