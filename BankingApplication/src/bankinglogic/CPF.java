@@ -52,8 +52,8 @@ public class CPF implements ITransactions {
         if (accountType == "Savings Account" || accountType == "Current Account")
         this.accountType = accountType;
         else{
-            System.out.println("Invalid Account Type..:");
-            this.accountType = "Invalid Acount";
+            System.out.println("CPF-related Account Type..:");
+            this.accountType = "CPF-related Account";
         }
         
         
@@ -152,6 +152,7 @@ public class CPF implements ITransactions {
     
     }
     
+    @Override
     public void displayTransaction(){
     System.out.println("Account No:" + getAccountNumber());
     System.out.println("Account Name:" + getAccountName());
